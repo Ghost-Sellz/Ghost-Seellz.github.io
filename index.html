@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <title>Avanceret Bordplanløsning</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="header">
+        <h1>Automatisk Bordplan</h1>
+        <div class="settings">
+            <label for="eleverPerBord">Elever pr. bord:</label>
+            <select id="eleverPerBord">
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+            </select>
+            <label for="ugenslaeg">Ugenslæg:</label>
+            <input type="text" id="ugenslaeg" placeholder="Eks: Elev1,Elev2">
+        </div>
+    </div>
+
+    <div class="main-container">
+        <div class="input-container">
+            <textarea id="navneInput" placeholder="Indtast navne adskilt af mellemrum/komma/newlines..." rows="5"></textarea>
+            <button onclick="genererBordplan()">Generer Bordplan</button>
+            <button onclick="resetBordplan()">Nulstil</button>
+            <button onclick="toggleDarkMode()">Dunkel tilstand</button>
+        </div>
+
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Søg efter elev..." oninput="filterNavne()">
+        </div>
+
+        <div class="table-container"></div>
+
+        <div class="controls">
+            <button onclick="downloadImage()">Gem som billede</button>
+            <button onclick="eksportPDF()">Gem som PDF</button>
+            <button onclick="showStatistik()">Se statistik</button>
+            <button onclick="showHistorik()">Vis historik</button>
+        </div>
+    </div>
+
+    <div id="statistikModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="hideStatistik()">&times;</span>
+            <h2>Statistik</h2>
+            <div id="statistikList"></div>
+        </div>
+    </div>
+
+    <div id="historikModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="hideHistorik()">&times;</span>
+            <h2>Historik</h2>
+            <select id="historikDropdown"></select>
+            <button onclick="genfraHistorik()">Genskab</button>
+        </div>
+    </div>
+
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.72/pdfmake.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
